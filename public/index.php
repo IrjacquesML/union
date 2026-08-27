@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+$root = dirname(__DIR__);
+require is_file($root . '/vendor/autoload.php')
+    ? $root . '/vendor/autoload.php'
+    : $root . '/src/autoload.php';
 
 use App\Core\App;
 use App\Core\View;

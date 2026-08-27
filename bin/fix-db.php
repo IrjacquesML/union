@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
+$root = dirname(__DIR__);
+require is_file($root . '/vendor/autoload.php')
+    ? $root . '/vendor/autoload.php'
+    : $root . '/src/autoload.php';
 
 use App\Core\Database;
-use Dotenv\Dotenv;
 
-$root = dirname(__DIR__);
-Dotenv::createImmutable($root)->safeLoad();
+load_env_file($root . '/.env');
 
 $dbConfig = require $root . '/config/database.php';
 $pdo = Database::getInstance($dbConfig)->pdo();

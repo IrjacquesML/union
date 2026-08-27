@@ -7,15 +7,14 @@ declare(strict_types=1);
  * Usage: php bin/set-admin-password.php "MonMotDePasseSecurise"
  */
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+$root = dirname(__DIR__);
+require is_file($root . '/vendor/autoload.php')
+    ? $root . '/vendor/autoload.php'
+    : $root . '/src/autoload.php';
 
-use Dotenv\Dotenv;
 use App\Core\Database;
 
-$root = dirname(__DIR__);
-if (is_file($root . '/.env')) {
-    Dotenv::createImmutable($root)->safeLoad();
-}
+load_env_file($root . '/.env');
 
 $password = $argv[1] ?? null;
 if (!$password || strlen($password) < 8) {

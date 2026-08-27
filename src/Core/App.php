@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core;
 
-use Dotenv\Dotenv;
-
 final class App
 {
     private Router $router;
@@ -14,9 +12,7 @@ final class App
     public function __construct()
     {
         $root = dirname(__DIR__, 2);
-        if (is_file($root . '/.env')) {
-            Dotenv::createImmutable($root)->safeLoad();
-        }
+        load_env_file($root . '/.env');
 
         $this->config = require $root . '/config/app.php';
         date_default_timezone_set($this->config['timezone']);

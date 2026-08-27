@@ -9,6 +9,45 @@ function e(?string $value): string
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+function load_env_file(string $path): void
+{
+    if (!is_file($path)) {
+        return;
+    }
+    if (class_exists(\Dotenv\Dotenv::class)) {
+        \Dotenv\Dotenv::createImmutable(dirname($path))->safeLoad();
+        return;
+    }
+
+    $lines = file($path, FILE_IGNORE_NEW_LINES) ?: [];
+    foreach ($lines as $line) {
+        $line = trim($line);
+        if ($line === '' || str_starts_with($line, '#')) {
+            continue;
+        }
+        if (!str_contains($line, '=')) {
+            continue;
+        }
+        [$key, $value] = explode('=', $line, 2);
+        $key = trim($key);
+        $value = trim($value);
+        if ($key === '' || str_starts_with($key, '#')) {
+            continue;
+        }
+        if (
+            (str_starts_with($value, '"') && str_ends_with($value, '"'))
+            || (str_starts_with($value, "'") && str_ends_with($value, "'"))
+        ) {
+            $value = substr($value, 1, -1);
+        }
+        if (getenv($key) === false) {
+            putenv($key . '=' . $value);
+        }
+        $_ENV[$key] ??= $value;
+        $_SERVER[$key] ??= $value;
+    }
+}
+
 function redirect(string $url): never
 {
     header('Location: ' . $url);
