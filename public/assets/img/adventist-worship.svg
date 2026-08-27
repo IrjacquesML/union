@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Adoration">
+  <defs>
+    <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f3c98a"/>
+      <stop offset="35%" stop-color="#c45c4a"/>
+      <stop offset="100%" stop-color="#2a1b3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#dusk)"/>
+  <circle cx="800" cy="210" r="110" fill="#ffe7b0"/>
+  <path d="M0 900 L0 640 Q400 500 800 560 T1600 620 V900Z" fill="#1a1028"/>
+  <g fill="#f4e4b3">
+    <rect x="260" y="690" width="14" height="150" rx="3"/>
+    <rect x="470" y="640" width="14" height="200" rx="3"/>
+    <rect x="680" y="610" width="14" height="230" rx="3"/>
+    <rect x="800" y="590" width="16" height="250" rx="3"/>
+    <rect x="930" y="620" width="14" height="220" rx="3"/>
+    <rect x="1130" y="660" width="14" height="180" rx="3"/>
+    <rect x="1330" y="710" width="14" height="130" rx="3"/>
+  </g>
+</svg>

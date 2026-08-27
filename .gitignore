@@ -1,0 +1,13 @@
+/vendor/
+.env
+/public/uploads/*
+!/public/uploads/.gitkeep
+/storage/*.log
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+bin/probe-out.txt
+bin/git-info.txt
+
